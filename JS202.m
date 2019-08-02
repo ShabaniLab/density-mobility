@@ -1,4 +1,4 @@
-close all; clc;clear all;
+close all; clc; clear all;
 
 % sample name
 sampleName = 'JS202';
@@ -23,13 +23,13 @@ I = 1e-9;
 % ensure all the Data is oriented with B at the low value as the first
 % point and B at the high value at the last point
 B   = x_xx{1};
-Rxx = -(y_xx{1}/I);
-Ryy = fliplr(y_yy{1}/I);
-Rxy = fliplr(y_xy{1}/I);
+Rxx = -(y_xx{1} / I);
+Ryy = fliplr(y_yy{1} / I);
+Rxy = fliplr(y_xy{1} / I);
 
 % Uncomment the two lines below variable definition to decide these bounds
-linearFitRange = [900 3000];
-% PlotLinearFit(B,Rxy,linearFitRange)
+linearFitRange = [900, 3000];
+% PlotLinearFit(B, Rxy, linearFitRange)
 % return
 
 % Location of density and mobility numbers
@@ -39,12 +39,12 @@ linearFitRange = [900 3000];
 % ...All is for the plot with Rxx,Ryy,Rxy
 % ...XX  is for the plot with Rxx,Rxy
 % ...YY  is for the plot with Ryy,Rxy
-textInfoLocationAll = [0 200];
-textInfoLocationXX  = [0 100];
-textInfoLocationYY  = [0 300];
+textInfoLocationAll = [0, 200];
+textInfoLocationXX  = [0, 100];
+textInfoLocationYY  = [0, 300];
 
 % Geometric factor (.75 for our L-shaped hallbar, 4.5 for van Der Pauw)
 geometricFactor = 4.5;
 
-PlotAll(B,Rxx,Ryy,Rxy,geometricFactor,sampleName,linearFitRange,...
-       textInfoLocationAll,textInfoLocationXX,textInfoLocationYY);
+PlotAll(B, Rxx, Ryy, Rxy, geometricFactor, sampleName, linearFitRange, ...
+        textInfoLocationAll, textInfoLocationXX, textInfoLocationYY);
