@@ -28,7 +28,10 @@ function [f] = PlotRxxRyyRxy(B, Rxx, Ryy, Rxy, geometricFactor, ...
     yyaxis left;
     lgd = legend([p1, p2, p3], {'R_{xx}', 'R_{yy}', 'R_{xy}'});
     lgd.Location = 'best';
-    saveas(f, [sampleName '.jpg'], 'jpg');
-    saveas(f, [sampleName '.eps'], 'eps');
+    
+    output_dir = 'output/';
+    MakeDir(output_dir);
+    saveas(f, [output_dir sampleName '.jpg'], 'jpg');
+    saveas(f, [output_dir sampleName '.eps'], 'eps');
     hold off;
 end

@@ -28,6 +28,9 @@ function PlotRxxRyyRxyNormalize(B, Rxx, Ryy, Rxy, sampleName, ...
     yyaxis left;
 %     lgd = legend(gca,'show');
 %     lgd.Location = 'best';
-    saveas(f, [sampleName '.jpg'], 'jpg');
+
+    output_dir = 'output/';
+    MakeDir(output_dir);
+    saveas(f, [output_dir sampleName '.jpg'], 'jpg');
     hold off;
 end

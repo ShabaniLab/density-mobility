@@ -1,13 +1,19 @@
 close all; clc; clear all;
 
-% sample name
-sampleName = 'JS224';
+% path to the directory containing the data files
+dataDir = '';
 
-dataXX = load([sampleName '_xx.mat']);
+% common prefix of the data filenames
+prefix = '';
+
+% name of the sample to be used in the plot titles
+sampleName = '';
+
+dataXX = load([dataDir prefix '_xx.mat']);
 dataXX = dataXX.Data;
-dataYY = load([sampleName '_xx.mat']);
+dataYY = load([dataDir prefix '_yy.mat']);
 dataYY = dataYY.Data;
-dataXY = load([sampleName '_xy.mat']);
+dataXY = load([dataDir prefix '_xy.mat']);
 dataXY = dataXY.Data;
 
 x_xx = dataXX.cX;
@@ -18,14 +24,14 @@ x_xy = dataXY.cX;
 y_xy = dataXY.cY;
 
 % Current used to take the data
-I = 1e-6;
+I = 0;
 
 % ensure all the Data is oriented with B at the low value as the first
 % point and B at the high value at the last point
 B   = x_xx{1};
 Rxx = (y_xx{1} / I);
 Ryy = (y_yy{1} / I);
-Rxy = fliplr(y_xy{1} / I);
+Rxy = (y_xy{1} / I);
 
 % Uncomment the two lines below variable definition to decide these bounds
 linearFitRange = [140, 1000];
@@ -44,7 +50,7 @@ textInfoLocationXX  = [1, max(Rxx) - ((max(Rxx) - min(Rxx)) / 10)];
 textInfoLocationYY  = [1, max(Ryy) - ((max(Ryy) - min(Ryy)) / 10)];
 
 % Geometric factor (.75 for our L-shaped hallbar, 4.5 for van Der Pauw)
-geometricFactor = 4.5;
+geometricFactor = 0;
 
 PlotAll(B, Rxx, Ryy, Rxy, geometricFactor, sampleName, linearFitRange, ...
         textInfoLocationAll, textInfoLocationXX, textInfoLocationYY);

@@ -23,6 +23,9 @@ function [f] = PlotR_Rxy(B, R, Rxy, geometricFactor, sampleName, ...
     plot(B, Rxy / scaleXY, 'DisplayName', 'R_{xy}');
     ylabel(['R_{xy} [' scalePrefixXY '\Omega]']);
     hold off;
-    saveas(f, [sampleName '_' directionName '.jpg'], 'jpg');
-    saveas(f, [sampleName '_' directionName '.eps'], 'eps');
+    
+    output_dir = 'output/';
+    MakeDir(output_dir);
+    saveas(f, [output_dir sampleName '_' directionName '.jpg'], 'jpg');
+    saveas(f, [output_dir sampleName '_' directionName '.eps'], 'eps');
 end
