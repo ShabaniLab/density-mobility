@@ -23,11 +23,12 @@ y_yy = dataYY.cY;
 x_xy = dataXY.cX;
 y_xy = dataXY.cY;
 
-% Current used to take the data
+% lockin current (in Amperes) used to take the data
 I = 0;
 
-% ensure all the Data is oriented with B at the low value as the first
-% point and B at the high value at the last point
+% depending on the direction of the field sweep, use fliplr() to ensure
+% data is oriented with R(min(B)) as the first point and R(max(B)) as the
+% last point
 B   = x_xx{1};
 Rxx = (y_xx{1} / I);
 Ryy = (y_yy{1} / I);
@@ -39,17 +40,17 @@ PlotLinearFit(B, Rxy, linearFitRange)
 % return
 
 % Location of density and mobility numbers
-% [x y] coordinate in units of the data
+% [x, y] coordinate in units of the data
 % plot once and iterate to find a nice location (text is centered
 % vertically, but aligned left horizontally)
-% ...All is for the plot with Rxx,Ryy,Rxy
-% ...XX  is for the plot with Rxx,Rxy
-% ...YY  is for the plot with Ryy,Rxy
+% ...All is for the plot with Rxx, Ryy, Rxy
+% ...XX  is for the plot with Rxx, Rxy
+% ...YY  is for the plot with Ryy, Rxy
 textInfoLocationAll = [1, max(Rxx) - ((max(Rxx) - min(Rxx)) / 10)];
 textInfoLocationXX  = [1, max(Rxx) - ((max(Rxx) - min(Rxx)) / 10)];
 textInfoLocationYY  = [1, max(Ryy) - ((max(Ryy) - min(Ryy)) / 10)];
 
-% Geometric factor (.75 for our L-shaped hallbar, 4.5 for van Der Pauw)
+% this should be .75 for our L-shaped hallbar, or 4.5 for van der Pauw
 geometricFactor = 0;
 
 PlotAll(B, Rxx, Ryy, Rxy, geometricFactor, sampleName, linearFitRange, ...
